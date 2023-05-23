@@ -34,7 +34,7 @@ $stmt->execute();
 
 if($stmt->rowCount() > 0){
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    if(password_verify($password, $user['password'])){
+    if($password == $user['password']){
         // Correct Password
         echo json_encode(['status' => 'success', 'message' => 'Login successful']);
     }else{
