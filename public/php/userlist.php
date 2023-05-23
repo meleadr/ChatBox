@@ -18,14 +18,12 @@ try {
     die("Failed to connect to the database: " . $e->getMessage());
 }
 
-try {
-    $stmt = $db->prepare("SELECT mail FROM users");
-    $stmt->execute();
-    $usernames = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+$stmt = $db->prepare("SELECT id_user, mail FROM users WHERE mail != :email");
+$stmt->bindParam(':email', $_GET['email']);
+$stmt->execute();
 
-    header('Content-Type: application/json');
-    echo json_encode($usernames);
-} catch(PDOException $e) {
-    echo json_encode(["error" => $e->getMessage()]);
-}
+$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+header('Content-Type: application/json');
+echo json_encode(['status' => 'success', 'users' => $users]);
 ?>
