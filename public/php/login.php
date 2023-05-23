@@ -36,7 +36,7 @@ if($stmt->rowCount() > 0){
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     if($password == $user['password']){
         // Correct Password
-        echo json_encode(['status' => 'success', 'message' => 'Login successful', 'token' => $email]);
+        echo json_encode(['status' => 'success', 'message' => 'Login successful', 'token' => $email, 'id_user' => $user['id_user']]);
     }else{
         // Wrong Password
         echo json_encode(['status' => 'error', 'message' => 'Wrong password']);

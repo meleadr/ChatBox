@@ -23,6 +23,14 @@ const routes = [
 		},
 	},
 	{
+		path: "/chatroom/:id",
+		Name: "ChatRoom",
+		component: ChatRoom,
+		meta: {
+			requiresAuth: true,
+		},
+	},
+	{
 		path: "/:pathMatch(.*)*",
 		Name: "NotFound",
 		component: NotFound,

@@ -24,12 +24,12 @@ $json_str = file_get_contents('php://input');
 // Get as an object
 $json_obj = json_decode($json_str);
 
-$message = $json_obj->message;
+$message = $json_obj->text;
 $sender = $json_obj->sender; //assuming you pass the sender along with the message
 $chatroomId = $json_obj->chatroomId; //assuming you pass the chatroom id along with the message
 
 $stmt = $db->prepare("INSERT INTO messages (content, id_chatroom, id_user) VALUES (:message, :id_chatroom, :sender)");
-$stmt->bindParam(':id_chatroom', $id_chatroom);
+$stmt->bindParam(':id_chatroom', $chatroomId);
 $stmt->bindParam(':sender', $sender);
 $stmt->bindParam(':message', $message);
 

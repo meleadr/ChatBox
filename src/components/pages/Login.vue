@@ -44,6 +44,7 @@ const login = async () => {
 		.then((response) => {
 			if (response.data.status === "success") {
 				localStorage.setItem("token", JSON.stringify(response.data.user));
+				localStorage.setItem("id_user", response.data.id_user);
 				router.push("/dashboard");
 			} else {
 				error.value = response.data.message;

@@ -38,7 +38,7 @@ const startChat = async () => {
 	for (let i = 0; i < selectedUsers.length; i++) {
 		selectedUsersId.push(selectedUsers[i].value);
 	}
-	console.log(selectedUsersId);
+	selectedUsersId.push(localStorage.getItem("id_user"));
 	await axios
 		.post("http://localhost:8888/public/php/chatroom.php", {
 			name: "Chatroom avec " + selectedUsersId.join(", "),
