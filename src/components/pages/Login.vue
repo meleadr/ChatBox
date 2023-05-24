@@ -43,7 +43,7 @@ const login = async () => {
 		.post("http://localhost:8888/public/php/login.php", form)
 		.then((response) => {
 			if (response.data.status === "success") {
-				localStorage.setItem("token", JSON.stringify(response.data.user));
+				localStorage.setItem("token", response.data.token);
 				localStorage.setItem("id_user", response.data.id_user);
 				router.push("/dashboard");
 			} else {
