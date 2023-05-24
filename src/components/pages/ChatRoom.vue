@@ -3,7 +3,7 @@
 		<h1>Chatroom {{ chatroomId }}</h1>
 		<div class="chatbox">
 			<div v-for="message in messages" :key="message.id">
-				{{ message.id_user }}: {{ message.content }}
+				Utilisateur {{ message.id_user }}: {{ message.content }}
 			</div>
 			<input
 				type="text"
@@ -64,6 +64,8 @@ const sendMessage = async () => {
 };
 
 onMounted(getMessages);
+
+setInterval(getMessages, 1000);
 </script>
 
 <style scoped>
